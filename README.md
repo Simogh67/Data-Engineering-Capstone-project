@@ -10,4 +10,5 @@ The project follows the follow steps:
 * Step 3: Define the Data Model
 * Step 4: Run ETL to Model the Data
 * Step 5: Complete Project Write Up
+
 ** Please download the dataset used in this project from https://smoosavi.org/datasets/lstw.
