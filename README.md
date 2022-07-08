@@ -9,7 +9,6 @@ The project follows the follow steps:
 * Step 2: Explore and Assess the Data
 * Step 3: Define the Data Model
 * Step 4: Run ETL to Model the Data
-* Step 5: Complete Project Write Up
 
 ** Please download the dataset used in this project from https://smoosavi.org/datasets/lstw.
 
@@ -75,5 +74,4 @@ To implement our star schema we should follow the steps of ETL:
 
 **3**. By using the staging tables, fact and dimension tables are built. This step is implemented in the next section. 
 ### Step 4: Run Pipelines to Model the Data 
-#### 4.1 Create the data model
-In this section, we create our fact and dimension tables. Moreover, we run some tests to ensure that our data pipeline works well. 
+To run ETL pipeline, please run main.py file. 

@@ -1,8 +1,8 @@
-# importing necessary libraries and initializing spark
+# importing necessary libraries
 from pyspark.sql import SparkSession
-import shutil
 from clean import Clean
 from create import Create
+from check import Check
 
 
 def create_spark_session():
@@ -18,8 +18,6 @@ def read_file(file,spark):
     df.dropDuplicates()
     return df
 
-def delete_parquet(self,file):
-    shutil.rmtree(file)
 
 def main():
     # initializing a spark session 
@@ -30,10 +28,6 @@ def main():
     df_weather=read_file("WeatherEvents_Aug16_Dec20_Publish.csv",spark)
     df_airport= read_file("airport-codes_csv.csv",spark)
     
-    # removing parquet files if any 
-    shutil.rmtree('Traffic.parquet')
-    shutil.rmtree('Weather.parquet')
-    #shutil.rmtree('Fact.parquet')
     
     # cleaning weather, traffic and airport tables 
     item_clean=Clean(spark,df_traffic)
@@ -74,19 +68,32 @@ def main():
     fact_table=item_fact.create_weather_table()
     fact_table.createOrReplaceTempView("temp_fact")
     
-    #sanity checks: check primary keys
-    check_primary_keys(airport_table)
-    check_primary_keys(time_table)
-    check_primary_keys(address_table)
-    check_primary_keys(weather_table)
-    check_primary_keys(fact_table)
+    # saving the result
+    fact_table.write.parquet("Fact.parquet") 
+    fact_table=spark.read.parquet("Fact.parquet")
     
-    # check rows
-    check_exists_row(airport_table)
-    check_exists_row(time_table)
-    check_exists_row(address_table)
-    check_exists_row(weather_table)
-    check_exists_row(fact_table)
+    #sanity checks:
+    item_airpot=Check(airport_table)
+    item_airpot.check_primary_keys()
+    item_airpot.check_exists_row()
+    
+    item_time=Check(time_table)
+    item_time.check_primary_keys()
+    item_time.check_exists_row()
+    
+    item_address=Check(address_table)
+    item_address.check_primary_keys()
+    item_address.check_exists_row()
+    
+    item_weather=Check(weather_table)
+    item_weather.check_primary_keys()
+    item_weather.check_exists_row()
+    
+    item_fact=Check(fact_table)
+    item_fact.check_primary_keys()
+    item_fact.check_exists_row()
+    
+
     
     
 if __name__ == "__main__":
