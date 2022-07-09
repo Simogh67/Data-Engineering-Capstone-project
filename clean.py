@@ -20,7 +20,7 @@ class Clean():
               .withColumnRenamed("EndTime(UTC)","End_time")\
               .createOrReplaceTempView("temp_weather")
             
-        self.df_weather_truncate=self.spark.sql("""select * from                                    temp_weather where 
+        self.df_weather_truncate=self.spark.sql("""select * from temp_weather where 
                            Start_time>'2019-01-01' """)
         return self.df_weather_truncate
     
