@@ -74,4 +74,4 @@ To implement our star schema we should follow the steps of ETL:
 
 **3**. By using the staging tables, fact and dimension tables are built. This step is implemented in the next section. 
 ### Step 4: Run Pipelines to Model the Data 
-To run ETL pipeline, please run main.py file. 
+To run the ETL pipeline, please run main.py file. 
