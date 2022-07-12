@@ -20,7 +20,7 @@ different csv files.
 The first and second files are countrywide traffic 
 and weather events, which can be found here https://smoosavi.org/datasets/lstw.
 
-The third file is Airport codes provided by Udacity. 
+The third file is Airport codes, which is available in this repository. 
 Based on these three files, we build our data warehouse 
 via creating a star schema. Since our data is a big data,
  we use Spark to manage it. Our designed schema
