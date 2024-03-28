@@ -1,5 +1,4 @@
 # Traffic Events Dataset
-### Data Engineering Capstone Project
 
 #### Project Summary
 In this project, we implement an ETL process for a traffic events dataset via creating a star schema. Our schema enables data scientists to use the dataset stored in 
